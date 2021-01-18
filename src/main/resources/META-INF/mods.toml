@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[35,)"
+loaderVersion = "[34,)"
 license = "All Rights Reserved"
 
 [[mods]]
@@ -14,7 +14,7 @@ Example Description
 [[dependencies.${modId}]]
 modId = "forge"
 mandatory = true
-versionRange = "[35,)"
+versionRange = "[34,)"
 ordering = "NONE"
 side = "BOTH"
 
