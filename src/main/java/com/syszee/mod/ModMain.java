@@ -59,5 +59,7 @@ public class ModMain
         dataGenerator.addProvider(new ItemTagGen(dataGenerator, blockTagGen, existingFileHelper));
         dataGenerator.addProvider(new FluidTagGen(dataGenerator, existingFileHelper));
         dataGenerator.addProvider(new EntityTypeTagGen(dataGenerator, existingFileHelper));
+        dataGenerator.addProvider(new ItemModelGen(dataGenerator));
+        dataGenerator.addProvider(new LanguageGen(dataGenerator));
     }
 }
