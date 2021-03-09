@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.syszee.mod.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "refmap": "battlefields.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "ExampleMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
