@@ -135,6 +135,11 @@ jar {
     }
 }
 
+shadowJar {
+    configurations = [project.configurations.shade]
+    relocate 'io.github.ocelot', 'com.syszee.example.lib.ocelot'
+}
+
 reobf {
     shadowJar {}
 }
