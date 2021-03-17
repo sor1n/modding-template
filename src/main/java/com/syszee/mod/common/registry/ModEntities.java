@@ -41,7 +41,7 @@ public class ModEntities
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String id, EntityType.Builder<T> builder, int primaryColor, int secondaryColor)
     {
         RegistryObject<EntityType<T>> object = register(id, builder);
-        ModItems.ITEMS.register(id + "_spawn_egg", () -> new SpawnEggItemBase<>(object, primaryColor, secondaryColor, true, new Item.Properties().group(ItemGroup.MISC)));
+        ModItems.ITEMS.register(id + "_spawn_egg", () -> new SpawnEggItemBase<>(object, primaryColor, secondaryColor, true, new Item.Properties().tab(ItemGroup.TAB_MISC)));
         return object;
     }
 

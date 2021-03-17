@@ -15,7 +15,7 @@ public class EntityTypeTagGen extends EntityTypeTagsProvider
     }
 
     @Override
-    protected void registerTags()
+    protected void addTags()
     {
     }
 }

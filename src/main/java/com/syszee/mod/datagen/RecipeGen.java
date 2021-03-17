@@ -14,7 +14,7 @@ public class RecipeGen extends RecipeProvider
     }
 
     @Override
-    protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer)
     {
 //        ShapedRecipeBuilder.shapedRecipe(ModItems.EXAMPLE.get())
 //                .patternLine("DDD")

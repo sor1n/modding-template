@@ -30,7 +30,7 @@ public class ItemModelGen implements IDataProvider
     }
 
     @Override
-    public void act(DirectoryCache cache)
+    public void run(DirectoryCache cache)
     {
         Path path = this.dataGenerator.getOutputFolder();
         Map<ResourceLocation, Supplier<JsonElement>> map1 = Maps.newHashMap();
@@ -52,17 +52,17 @@ public class ItemModelGen implements IDataProvider
 
     private void generateFlatItem(Item item, ModelsUtil p_240076_2_)
     {
-        p_240076_2_.func_240234_a_(ModelsResourceUtil.func_240219_a_(item), ModelTextures.func_240352_b_(item), this.consumer);
+        p_240076_2_.create(ModelsResourceUtil.getModelLocation(item), ModelTextures.layer0(item), this.consumer);
     }
 
     private void generateFlatItem(Item item, String p_240077_2_, ModelsUtil p_240077_3_)
     {
-        p_240077_3_.func_240234_a_(ModelsResourceUtil.func_240220_a_(item, p_240077_2_), ModelTextures.func_240376_j_(ModelTextures.func_240344_a_(item, p_240077_2_)), this.consumer);
+        p_240077_3_.create(ModelsResourceUtil.getModelLocation(item, p_240077_2_), ModelTextures.layer0(ModelTextures.getItemTexture(item, p_240077_2_)), this.consumer);
     }
 
     private void generateFlatItem(Item item, Item p_240075_2_, ModelsUtil p_240075_3_)
     {
-        p_240075_3_.func_240234_a_(ModelsResourceUtil.func_240219_a_(item), ModelTextures.func_240352_b_(p_240075_2_), this.consumer);
+        p_240075_3_.create(ModelsResourceUtil.getModelLocation(item), ModelTextures.layer0(p_240075_2_), this.consumer);
     }
 
     private <T> void saveCollection(DirectoryCache cache, Path dataFolder, Map<T, ? extends Supplier<JsonElement>> models, BiFunction<Path, T, Path> resolver)
