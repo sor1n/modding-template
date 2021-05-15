@@ -52,14 +52,20 @@ public class ModMain
     {
         DataGenerator dataGenerator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-        BlockTagGen blockTagGen = new BlockTagGen(dataGenerator, existingFileHelper);
-        dataGenerator.addProvider(new RecipeGen(dataGenerator));
-        dataGenerator.addProvider(new LootTableGen(dataGenerator));
-        dataGenerator.addProvider(blockTagGen);
-        dataGenerator.addProvider(new ItemTagGen(dataGenerator, blockTagGen, existingFileHelper));
-        dataGenerator.addProvider(new FluidTagGen(dataGenerator, existingFileHelper));
-        dataGenerator.addProvider(new EntityTypeTagGen(dataGenerator, existingFileHelper));
-        dataGenerator.addProvider(new ItemModelGen(dataGenerator));
-        dataGenerator.addProvider(new LanguageGen(dataGenerator));
+        if (event.includeServer())
+        {
+            BlockTagGen blockTagGen = new BlockTagGen(dataGenerator, existingFileHelper);
+            dataGenerator.addProvider(new RecipeGen(dataGenerator));
+            dataGenerator.addProvider(new LootTableGen(dataGenerator));
+            dataGenerator.addProvider(blockTagGen);
+            dataGenerator.addProvider(new ItemTagGen(dataGenerator, blockTagGen, existingFileHelper));
+            dataGenerator.addProvider(new FluidTagGen(dataGenerator, existingFileHelper));
+            dataGenerator.addProvider(new EntityTypeTagGen(dataGenerator, existingFileHelper));
+        }
+        if (event.includeClient())
+        {
+            dataGenerator.addProvider(new ItemModelGen(dataGenerator));
+            dataGenerator.addProvider(new LanguageGen(dataGenerator));
+        }
     }
 }
