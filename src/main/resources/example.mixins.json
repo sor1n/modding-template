@@ -3,7 +3,6 @@
   "package": "com.syszee.example.mixin",
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
-  "refmap": "example.refmap.json",
   "mixins": [
   ],
   "client": [

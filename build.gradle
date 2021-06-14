@@ -14,7 +14,7 @@ group = 'com.syszee'
 loom {
     silentMojangMappingsLicense()
 
-    mixinConfigs = ["example.mixins.json"]
+    mixinConfigs = [(String) "${project.mod_id}.mixins.json"]
 
     dataGen {
         mod project.mod_id
