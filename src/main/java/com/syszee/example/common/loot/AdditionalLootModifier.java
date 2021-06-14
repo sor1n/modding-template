@@ -31,7 +31,7 @@ public class AdditionalLootModifier extends LootModifier
     @Override
     protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext ctx)
     {
-        generatedLoot.addAll(ctx.getLootTable(this.lootTable).getRandomItems(ctx));
+        ctx.getLootTable(this.lootTable).getRandomItems(ctx, generatedLoot::add);
         return generatedLoot;
     }
 
