@@ -107,8 +107,7 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
 
-    compileOnly "com.github.Ocelot5836:Sonar:${project.sonar}:api"
-    runtimeOnly fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}")
+    implementation fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}")
     shade "com.github.Ocelot5836:Sonar:${project.sonar}"
 }
 
@@ -145,7 +144,7 @@ jar {
 
 shadowJar {
     configurations = [project.configurations.shade]
-    relocate 'io.github.ocelot', 'com.syszee.example.lib.ocelot'
+    relocate 'io.github.ocelot', "com.syszee.${project.modId}.lib.ocelot"
 }
 
 reobf {
