@@ -1,7 +1,7 @@
-package com.syszee.mod.common.registry;
+package com.syszee.example.common.registry;
 
-import com.syszee.mod.ModMain;
-import net.minecraft.item.Item;
+import com.syszee.example.ModMain;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

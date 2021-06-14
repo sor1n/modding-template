@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package com.syszee.mod.common.registry;
+package com.syszee.example.datagen;
 
 import mcp.MethodsReturnNonnullByDefault;
 

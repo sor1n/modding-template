@@ -1,6 +1,6 @@
-package com.syszee.mod.common;
+package com.syszee.example.common;
 
-import com.syszee.mod.ModMain;
+import com.syszee.example.ModMain;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = ModMain.MOD_ID)

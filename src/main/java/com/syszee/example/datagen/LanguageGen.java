@@ -1,6 +1,6 @@
-package com.syszee.mod.datagen;
+package com.syszee.example.datagen;
 
-import com.syszee.mod.ModMain;
+import com.syszee.example.ModMain;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.LanguageProvider;
 

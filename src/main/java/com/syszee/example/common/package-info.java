@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package com.syszee.mod.common;
+package com.syszee.example.common;
 
 import mcp.MethodsReturnNonnullByDefault;
 

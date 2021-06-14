@@ -1,10 +1,8 @@
-package com.syszee.mod.datagen;
+package com.syszee.example.datagen;
 
-import com.syszee.mod.ModMain;
-import net.minecraft.data.BlockTagsProvider;
+import com.syszee.example.ModMain;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.FluidTagsProvider;
-import net.minecraft.data.ItemTagsProvider;
+import net.minecraft.data.tags.FluidTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class FluidTagGen extends FluidTagsProvider

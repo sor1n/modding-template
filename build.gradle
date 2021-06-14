@@ -1,102 +1,51 @@
-import groovy.json.JsonOutput
-import groovy.json.JsonSlurper
-
-buildscript {
-    repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
-        maven { url = 'https://repo.spongepowered.org/maven' }
-        jcenter()
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-    }
-}
-
 plugins {
-    id 'com.github.johnrengelman.shadow' version "4.0.4"
+    id 'dev.architectury.loom' version '0.7.2-SNAPSHOT'
+    id "com.github.fudge.forgedflowerloom" version '2.0.0'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
 }
 
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'eclipse'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
-version = "${project.minecraft}-${project.modVersion}"
+archivesBaseName = project.mod_id
+version = "${project.minecraft_version}-${project.mod_version}"
 group = 'com.syszee'
-archivesBaseName = project.modId
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+loom {
+    silentMojangMappingsLicense()
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+    mixinConfigs = ["example.mixins.json"]
 
-mixin {
-    add sourceSets.main, "${project.modId}.refmap.json"
+    dataGen {
+        mod project.mod_id
+    }
+
+    runs {
+        client {
+            runDir "run/client"
+        }
+        server {
+            runDir "run/server"
+        }
+    }
+
+    launches {
+        data {
+            arg "--existing", file("src/main/resources").absolutePath
+        }
+    }
 }
 
 configurations {
     shade
 }
 
-shadowJar {
-    configurations = [project.configurations.shade]
-}
-
-minecraft {
-    mappings channel: "official", version: project.minecraft
-
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
-    runs {
-        client {
-            workingDirectory project.file('run/client')
-            property 'forge.logging.console.level', 'debug'
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            arg "-mixin.config=example.mixins.json"
-
-            mods {
-                example {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory project.file('run/server')
-            property 'forge.logging.console.level', 'debug'
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            arg "-mixin.config=example.mixins.json"
-
-            mods {
-                example {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        data {
-            workingDirectory project.file('run/data')
-            property 'forge.logging.console.level', 'debug'
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            args '--mod', project.modId, '--all', '--output', file('src/generated/resources/')
-
-            mods {
-                example {
-                    source sourceSets.main
-                }
-            }
-        }
-    }
-}
-
 repositories {
-    mavenCentral()
     maven {
-        name = "Curse Maven"
-        url = "https://www.cursemaven.com"
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
     }
     maven {
         name = "JitPack"
@@ -105,55 +54,83 @@ repositories {
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
+    // to change the versions see the gradle.properties file
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
 
-    implementation fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}")
-    shade "com.github.Ocelot5836:Sonar:${project.sonar}"
+    // choose what mappings you want to use here
+    // leave this uncommented if you want to use mojang's official mappings
+    mappings minecraft.officialMojangMappings()
+
+    // uncomment this if you want to use yarn mappings
+    // mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+
+    // uncomment this if you want to use mcp mappings
+    // mappings "de.oceanlabs.mcp:mcp_${project.mcp_channel}:${project.mcp_mappings}"
+
+    // your forge dependency, this is **required** when using Forge Loom in forge mode!
+    forge "net.minecraftforge:forge:${project.minecraft_version}-${project.forge_version}"
+
+    // These mods make life easier during runtime. They aren't strictly necessary
+
+	// Uncomment if adding dimensions
+    // modRuntime "curse.maven:shutupexperimentalsettings-407174:3188120" 
+    modRuntime "curse.maven:configured-457570:3340535"
+    modRuntime "curse.maven:catalogue-459701:3335979"
+
+    modImplementation "com.github.Ocelot5836:Sonar:${project.sonar_version}"
+    shade "com.github.Ocelot5836.Sonar:${project.sonar_version}"
 }
 
 processResources {
-	inputs.property("modName", project.modName)
-    inputs.property("modVersion", project.modVersion)
-    inputs.property("modId", project.modId)
-    filesMatching(["META-INF/mods.toml", "pack.mcmeta", (String) "${project.modId}.mixins.json"]) {
-        expand 'modVersion': project.modVersion, 'modId': project.modId, 'modName': project.modName
+	inputs.property("mod_name", project.mod_name)
+    inputs.property("mod_version", project.mod_version)
+    inputs.property("mod_id", project.mod_id)
+    inputs.property("mod_author", project.mod_author)
+    filesMatching(["META-INF/mods.toml", "pack.mcmeta", (String) "${project.mod_id}.mixins.json"]) {
+        expand 'mod_version': project.mod_version, 'mod_id': project.mod_id, 'mod_name': project.mod_name, 'mod_author': project.mod_author
     }
+}
 
-    // Minify json resources
-    doLast {
-        fileTree(dir: outputs.files.asPath, include: "**/*.json").each {
-            File file -> file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
-        }
-    }
+shadowJar {
+    configurations = [project.configurations.shade]
+    relocate 'io.github.ocelot', "com.syszee.${project.mod_id}.lib.ocelot"
 }
 
 jar {
     manifest {
         attributes([
-            "Specification-Title"     : project.modName,
+            "Specification-Title"     : project.mod_name,
             "Specification-Vendor"    : "SystemZee",
             "Specification-Version"   : "1",
             "Implementation-Title"    : project.name,
             "Implementation-Version"  : version,
             "Implementation-Vendor"   :"SystemZee",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-            "MixinConfigs"            : "${project.modId}.mixins.json"
+            "MixinConfigs"            : "${project.mod_id}.mixins.json"
+        ])
+    }
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+
+    // add some additional metadata to the jar manifest
+    manifest {
+        attributes([
+                "Specification-Title"     : project.mod_name,
+                "Specification-Vendor"    : "SystemZee",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : version,
+                "Implementation-Vendor"   : "SystemZee",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
 
 shadowJar {
     configurations = [project.configurations.shade]
-    relocate 'io.github.ocelot', "com.syszee.${project.modId}.lib.ocelot"
+    relocate 'io.github.ocelot', "com.syszee.${project.mod_id}.lib.ocelot"
 }
-
-reobf {
-    shadowJar {}
-}
-
-artifacts {
-    archives jar
-    archives shadowJar
-}
-
-build.dependsOn reobfShadowJar

@@ -1,22 +1,22 @@
-package com.syszee.mod.common.registry;
+package com.syszee.example.common.registry;
 
-import com.syszee.mod.ModMain;
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.tileentity.TileEntityType;
+import com.syszee.example.ModMain;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModBlocks
 {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ModMain.MOD_ID);
-    public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, ModMain.MOD_ID);
+    public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, ModMain.MOD_ID);
 
     // public static final RegistryObject<Block> EXAMPLE_BLOCK = register("example", () -> new ExampleBlock(AbstractBlock.Properties.from(Blocks.AIR)));
     // public static final RegistryObject<TileEntityType<ExampleTileEntity>> EXAMPLE_TILE_ENTITY = TILE_ENTITIES.register("example", () -> TileEntityType.Builder.create(ExampleTileEntity::new, EXAMPLE_BLOCK.get()).build(null));
@@ -32,7 +32,7 @@ public class ModBlocks
      */
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> block)
     {
-        return register(name, block, new Item.Properties().tab(ItemGroup.TAB_MISC));
+        return register(name, block, new Item.Properties().tab(CreativeModeTab.TAB_MISC));
     }
 
     /**

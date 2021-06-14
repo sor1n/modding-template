@@ -1,11 +1,11 @@
-package com.syszee.mod.common.registry;
+package com.syszee.example.common.registry;
 
-import com.syszee.mod.ModMain;
+import com.syszee.example.ModMain;
 import io.github.ocelot.sonar.common.item.SpawnEggItemBase;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
@@ -41,7 +41,7 @@ public class ModEntities
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String id, EntityType.Builder<T> builder, int primaryColor, int secondaryColor)
     {
         RegistryObject<EntityType<T>> object = register(id, builder);
-        ModItems.ITEMS.register(id + "_spawn_egg", () -> new SpawnEggItemBase<>(object, primaryColor, secondaryColor, true, new Item.Properties().tab(ItemGroup.TAB_MISC)));
+        ModItems.ITEMS.register(id + "_spawn_egg", () -> new SpawnEggItemBase<>(object, primaryColor, secondaryColor, true, new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
         return object;
     }
 

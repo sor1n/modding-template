@@ -1,10 +1,10 @@
-package com.syszee.mod;
+package com.syszee.example;
 
-import com.syszee.mod.common.registry.ModBlocks;
-import com.syszee.mod.common.registry.ModEntities;
-import com.syszee.mod.common.registry.ModItems;
-import com.syszee.mod.common.registry.ModSounds;
-import com.syszee.mod.datagen.*;
+import com.syszee.example.common.registry.ModBlocks;
+import com.syszee.example.common.registry.ModEntities;
+import com.syszee.example.common.registry.ModItems;
+import com.syszee.example.common.registry.ModSounds;
+import com.syszee.example.datagen.*;
 import io.github.ocelot.sonar.Sonar;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.MinecraftForge;

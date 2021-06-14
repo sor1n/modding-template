@@ -1,6 +1,6 @@
-package com.syszee.mod.client;
+package com.syszee.example.client;
 
-import com.syszee.mod.ModMain;
+import com.syszee.example.ModMain;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
 
