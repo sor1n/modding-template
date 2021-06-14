@@ -1,9 +1,6 @@
 package com.syszee.example;
 
-import com.syszee.example.common.registry.ModBlocks;
-import com.syszee.example.common.registry.ModEntities;
-import com.syszee.example.common.registry.ModItems;
-import com.syszee.example.common.registry.ModSounds;
+import com.syszee.example.common.registry.*;
 import com.syszee.example.datagen.*;
 import io.github.ocelot.sonar.Sonar;
 import net.minecraft.data.DataGenerator;
@@ -35,6 +32,7 @@ public class ModMain
         ModBlocks.BLOCKS.register(bus);
         ModBlocks.TILE_ENTITIES.register(bus);
         ModEntities.ENTITIES.register(bus);
+        ModLootTables.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(bus);
         ModSounds.SOUNDS.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);

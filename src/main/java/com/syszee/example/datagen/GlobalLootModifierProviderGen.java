@@ -1,6 +1,6 @@
 package com.syszee.example.datagen;
 
-import com.syszee.communityideas.ModMain;
+import com.syszee.example.ModMain;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
 
