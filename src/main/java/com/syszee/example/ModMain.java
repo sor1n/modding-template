@@ -57,6 +57,7 @@ public class ModMain
             BlockTagGen blockTagGen = new BlockTagGen(dataGenerator, existingFileHelper);
             dataGenerator.addProvider(new RecipeGen(dataGenerator));
             dataGenerator.addProvider(new LootTableGen(dataGenerator));
+            dataGenerator.addProvider(new GlobalLootModifierProviderGen(dataGenerator));
             dataGenerator.addProvider(blockTagGen);
             dataGenerator.addProvider(new ItemTagGen(dataGenerator, blockTagGen, existingFileHelper));
             dataGenerator.addProvider(new FluidTagGen(dataGenerator, existingFileHelper));
