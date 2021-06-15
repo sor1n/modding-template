@@ -94,11 +94,12 @@ processResources {
 shadowJar {
     configurations = [project.configurations.shade]
     relocate 'io.github.ocelot', "com.syszee.${project.mod_id}.lib.ocelot"
+    classifier "shadow"
 }
 
-artifacts {
-    archives jar
-    archives shadowJar
+remapJar {
+    dependsOn(shadowJar)
+    input.set(shadowJar.archivePath)
 }
 
 jar {
