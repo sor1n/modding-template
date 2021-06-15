@@ -78,7 +78,7 @@ dependencies {
     modRuntime "curse.maven:catalogue-459701:3335979"
 
     modImplementation "com.github.Ocelot5836:Sonar:${project.sonar_version}"
-    shade "com.github.Ocelot5836.Sonar:${project.sonar_version}"
+    shade "com.github.Ocelot5836:Sonar:${project.sonar_version}"
 }
 
 processResources {
@@ -94,6 +94,11 @@ processResources {
 shadowJar {
     configurations = [project.configurations.shade]
     relocate 'io.github.ocelot', "com.syszee.${project.mod_id}.lib.ocelot"
+}
+
+artifacts {
+    archives jar
+    archives shadowJar
 }
 
 jar {
