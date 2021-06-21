@@ -13,10 +13,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Mod.EventBusSubscriber(modid = ModMain.MOD_ID)
 public class ModEntities
 {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, ModMain.MOD_ID);
+    public static final Set<RegistryObject<SpawnEggItemBase<?>>> SPAWN_EGGS = new HashSet<>();
 
     // public static final RegistryObject<EntityType<ExampleEntity>> EXAMPLE = register("example", EntityType.Builder.create(ExampleEntity::new, EntityClassification.MISC).size(1.0F, 1.0F).trackingRange(10), 0xff00ff, 0xff00ff);
 
@@ -41,7 +45,7 @@ public class ModEntities
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String id, EntityType.Builder<T> builder, int primaryColor, int secondaryColor)
     {
         RegistryObject<EntityType<T>> object = register(id, builder);
-        ModItems.ITEMS.register(id + "_spawn_egg", () -> new SpawnEggItemBase<>(object, primaryColor, secondaryColor, true, new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
+        SPAWN_EGGS.add(ModItems.ITEMS.register(id + "_spawn_egg", () -> new SpawnEggItemBase<>(object, primaryColor, secondaryColor, true, new Item.Properties().tab(CreativeModeTab.TAB_MISC))));
         return object;
     }
 
