@@ -103,21 +103,6 @@ remapJar {
 }
 
 jar {
-    manifest {
-        attributes([
-            "Specification-Title"     : project.mod_name,
-            "Specification-Vendor"    : "SystemZee",
-            "Specification-Version"   : "1",
-            "Implementation-Title"    : project.name,
-            "Implementation-Version"  : version,
-            "Implementation-Vendor"   :"SystemZee",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-            "MixinConfigs"            : "${project.mod_id}.mixins.json"
-        ])
-    }
-}
-
-jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}" }
     }
@@ -134,9 +119,4 @@ jar {
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
-}
-
-shadowJar {
-    configurations = [project.configurations.shade]
-    relocate 'io.github.ocelot', "com.syszee.${project.mod_id}.lib.ocelot"
 }
