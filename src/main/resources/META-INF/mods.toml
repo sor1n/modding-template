@@ -9,6 +9,9 @@ displayName = "${mod_name}"
 authors = "${mod_author}"
 description = "Example Description"
 
+[modproperties.${mod_id}]
+catalogueItemIcon="minecraft:gold_block"
+
 [[dependencies.${mod_id}]]
 modId = "forge"
 mandatory = true
