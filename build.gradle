@@ -27,6 +27,9 @@ loom {
         server {
             runDir "run/server"
         }
+        data {
+            runDir "run/data"
+        }
     }
 
     launches {
@@ -90,6 +93,19 @@ processResources {
     filesMatching(["META-INF/mods.toml", "pack.mcmeta", (String) "${project.mod_id}.mixins.json"]) {
         expand 'mod_version': project.mod_version, 'mod_id': project.mod_id, 'mod_name': project.mod_name, 'mod_author': project.mod_author, 'mod_description': project.mod_description
     }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+
+    def targetVersion = 8
+    if (JavaVersion.current().isJava9Compatible()) {
+        it.options.release = targetVersion
+    }
+}
+
+java {
+    withSourcesJar()
 }
 
 shadowJar {
