@@ -75,7 +75,7 @@ dependencies {
 	// Uncomment if adding dimensions
     // modRuntime "curse.maven:shutupexperimentalsettings-407174:3188120" 
     modRuntime "curse.maven:configured-457570:3340535"
-    modRuntime "curse.maven:catalogue-459701:3335979"
+    modRuntime "curse.maven:catalogue-459701:3399554"
 
     modImplementation "com.github.Ocelot5836:Sonar:${project.sonar_version}"
     shade "com.github.Ocelot5836:Sonar:${project.sonar_version}"
@@ -86,8 +86,9 @@ processResources {
     inputs.property("mod_version", project.mod_version)
     inputs.property("mod_id", project.mod_id)
     inputs.property("mod_author", project.mod_author)
+    inputs.property("mod_description", project.mod_description)
     filesMatching(["META-INF/mods.toml", "pack.mcmeta", (String) "${project.mod_id}.mixins.json"]) {
-        expand 'mod_version': project.mod_version, 'mod_id': project.mod_id, 'mod_name': project.mod_name, 'mod_author': project.mod_author
+        expand 'mod_version': project.mod_version, 'mod_id': project.mod_id, 'mod_name': project.mod_name, 'mod_author': project.mod_author, 'mod_description': project.mod_description
     }
 }
 
@@ -114,7 +115,7 @@ jar {
                 "Specification-Vendor"    : "SystemZee",
                 "Specification-Version"   : "1",
                 "Implementation-Title"    : project.name,
-                "Implementation-Version"  : version,
+                "Implementation-Version"  : archiveVersion,
                 "Implementation-Vendor"   : "SystemZee",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
