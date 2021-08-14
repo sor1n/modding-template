@@ -1,6 +1,7 @@
 package com.syszee.example.common.registry;
 
 import com.syszee.example.ModMain;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -12,7 +13,7 @@ public class ModItems
 {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ModMain.MOD_ID);
 
-    // public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
+//    public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties().tab(CreativeModeTab.TAB_MISC)));
 
     /* Registry Methods */
 

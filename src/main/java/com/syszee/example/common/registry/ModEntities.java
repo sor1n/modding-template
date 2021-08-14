@@ -4,6 +4,8 @@ import com.syszee.example.ModMain;
 import io.github.ocelot.sonar.common.item.SpawnEggItemBase;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.monster.Husk;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -22,7 +24,7 @@ public class ModEntities
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, ModMain.MOD_ID);
     public static final Set<RegistryObject<SpawnEggItemBase<?>>> SPAWN_EGGS = new HashSet<>();
 
-    // public static final RegistryObject<EntityType<ExampleEntity>> EXAMPLE = register("example", EntityType.Builder.create(ExampleEntity::new, EntityClassification.MISC).size(1.0F, 1.0F).trackingRange(10), 0xff00ff, 0xff00ff);
+//    public static final RegistryObject<EntityType<ExampleEntity>> EXAMPLE_ENTITY = register("example_entity", EntityType.Builder.of(ExampleEntity::new, MobCategory.MISC).sized(1.0F, 1.0F).clientTrackingRange(10), 0xff00ff, 0xffff00);
 
     @SubscribeEvent
     public static void onEvent(BiomeLoadingEvent event)

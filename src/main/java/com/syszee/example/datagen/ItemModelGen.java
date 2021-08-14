@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.syszee.example.ModMain;
+import com.syszee.example.common.models.CustomModelTemplates;
+import com.syszee.example.common.registry.ModEntities;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
@@ -13,6 +15,7 @@ import net.minecraft.data.models.model.ModelTemplate;
 import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -53,21 +56,32 @@ public class ItemModelGen implements DataProvider
 
     private void register()
     {
+//        this.generateFlatItem(ModItems.EXAMPLE_ITEM.get(), ModelTemplates.FLAT_ITEM);
+//        this.generateFlatItem(ModItems.EXAMPLE_ITEM.get(), Items.STICK, ModelTemplates.FLAT_ITEM);
+
+        ModEntities.SPAWN_EGGS.forEach(egg -> {
+            this.generateSpawnEggItem(egg.get());
+        });
     }
 
-    private void generateFlatItem(Item item, ModelTemplate p_240076_2_)
+    private void generateSpawnEggItem(Item item)
     {
-        p_240076_2_.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(item), this.consumer);
+        CustomModelTemplates.SPAWN_EGG.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(Items.AIR), this.consumer);
     }
 
-    private void generateFlatItem(Item item, String p_240077_2_, ModelTemplate p_240077_3_)
+    private void generateFlatItem(Item item, ModelTemplate modelTemplate)
     {
-        p_240077_3_.create(ModelLocationUtils.getModelLocation(item, p_240077_2_), TextureMapping.layer0(TextureMapping.getItemTexture(item, p_240077_2_)), this.consumer);
+        modelTemplate.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(item), this.consumer);
     }
 
-    private void generateFlatItem(Item item, Item p_240075_2_, ModelTemplate p_240075_3_)
+    private void generateFlatItem(Item item, String itemTexture, ModelTemplate modelTemplate)
     {
-        p_240075_3_.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(p_240075_2_), this.consumer);
+        modelTemplate.create(ModelLocationUtils.getModelLocation(item, itemTexture), TextureMapping.layer0(TextureMapping.getItemTexture(item, itemTexture)), this.consumer);
+    }
+
+    private void generateFlatItem(Item item, Item itemTextureCopy, ModelTemplate modelTemplate)
+    {
+        modelTemplate.create(ModelLocationUtils.getModelLocation(item), TextureMapping.layer0(itemTextureCopy), this.consumer);
     }
 
     private <T> void saveCollection(HashCache cache, Path dataFolder, Map<T, ? extends Supplier<JsonElement>> models, BiFunction<Path, T, Path> resolver)

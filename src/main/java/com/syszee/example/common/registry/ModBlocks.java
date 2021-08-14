@@ -4,7 +4,9 @@ import com.syszee.example.ModMain;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.HopperBlockEntity;
 import net.minecraftforge.fml.RegistryObject;
 
 import java.util.function.Function;
@@ -18,8 +20,8 @@ public class ModBlocks
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ModMain.MOD_ID);
     public static final DeferredRegister<BlockEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, ModMain.MOD_ID);
 
-    // public static final RegistryObject<Block> EXAMPLE_BLOCK = register("example", () -> new ExampleBlock(AbstractBlock.Properties.from(Blocks.AIR)));
-    // public static final RegistryObject<TileEntityType<ExampleTileEntity>> EXAMPLE_TILE_ENTITY = TILE_ENTITIES.register("example", () -> TileEntityType.Builder.create(ExampleTileEntity::new, EXAMPLE_BLOCK.get()).build(null));
+//     public static final RegistryObject<Block> EXAMPLE_BLOCK = register("example_block", () -> new Block(Block.Properties.copy(Blocks.STONE).sound(ModSounds.EXAMPLE_SOUND_TYPE)));
+//     public static final RegistryObject<BlockEntityType<ExampleBlockEntity>> EXAMPLE_TILE_ENTITY = TILE_ENTITIES.register("example_tile_entity", () -> BlockEntityType.Builder.of(ExampleBlockEntity::new, EXAMPLE_BLOCK.get()).build(null));
 
     /* Registry Methods */
 

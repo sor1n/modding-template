@@ -17,9 +17,9 @@ public class ModPotions
 
     // Creates a set of potions based on the effect: potion, splash potion, lingering potion and tipped arrows
     // Last value is duration of the potion in ticks; 20 ticks = 1s
-    // public static final RegistryObject<Potion> EXAMPLE_POTION = POTIONS.register("example", () -> new Potion(new MobEffectInstance(ModEffects.EXAMPLE_EFFECT.get(), 200)));
-    // public static final RegistryObject<Potion> EXAMPLE_LONG_POTION = POTIONS.register("long_example", () -> new Potion("example", new MobEffectInstance(ModEffects.EXAMPLE_EFFECT.get(), 600)));
-    // public static final RegistryObject<Potion> EXAMPLE_STRONG_POTION = POTIONS.register("strong_example", () -> new Potion("example", new MobEffectInstance(ModEffects.EXAMPLE_EFFECT.get(), 200, 1)));
+//    public static final RegistryObject<Potion> EXAMPLE_POTION = POTIONS.register("example_potion", () -> new Potion(new MobEffectInstance(ModEffects.EXAMPLE_EFFECT.get(), 200)));
+//    public static final RegistryObject<Potion> EXAMPLE_LONG_POTION = POTIONS.register("long_example_potion", () -> new Potion("example_potion", new MobEffectInstance(ModEffects.EXAMPLE_EFFECT.get(), 600)));
+//    public static final RegistryObject<Potion> EXAMPLE_STRONG_POTION = POTIONS.register("strong_example_potion", () -> new Potion("example_potion", new MobEffectInstance(ModEffects.EXAMPLE_EFFECT.get(), 200, 1)));
 
     /**
      * Registers a new potion under the specified name.

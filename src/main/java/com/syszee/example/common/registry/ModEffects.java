@@ -15,7 +15,7 @@ public class ModEffects
 {
     public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.POTIONS, ModMain.MOD_ID);
 
-    // public static final RegistryObject<MobEffect> EXAMPLE_EFFECT = EFFECTS.register("example", () -> new PotionList.ExampleEffect(MobEffectCategory.NEUTRAL, 0xffff00));
+//     public static final RegistryObject<MobEffect> EXAMPLE_EFFECT = EFFECTS.register("example_effect", () -> new PotionList.ExampleEffect(MobEffectCategory.NEUTRAL, 0xffff00));
 
     /**
      * Registers a new effect under the specified name.
