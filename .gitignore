@@ -20,6 +20,7 @@ classes/
 
 .settings/
 .vscode/
+.vscode/launch.json
 bin/
 .classpath
 .project
