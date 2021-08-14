@@ -31,6 +31,8 @@ public class ModMain
         ModItems.ITEMS.register(bus);
         ModBlocks.BLOCKS.register(bus);
         ModBlocks.TILE_ENTITIES.register(bus);
+        ModEffects.EFFECTS.register(bus);
+        ModPotions.POTIONS.register(bus);
         ModEntities.ENTITIES.register(bus);
         ModLootTables.GLOBAL_LOOT_MODIFIER_SERIALIZERS.register(bus);
         ModSounds.SOUNDS.register(bus);
